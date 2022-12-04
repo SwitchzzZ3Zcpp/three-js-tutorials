@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import ProgressBar from "react-scroll-progress-bar"; 
 
 import * as THREE from 'three';
 // import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
@@ -21,21 +22,21 @@ function App() {
 
     let loadedModel;
     const glftLoader = new GLTFLoader();
-    glftLoader.load('./assets/shiba/scene.gltf', (gltfScene) => {
+    glftLoader.load('./assets/scene.gltf', (gltfScene) => {
       loadedModel = gltfScene;
       // console.log(loadedModel);
 
       gltfScene.scene.rotation.y = Math.PI / 8;
-      gltfScene.scene.position.y = 3;
-      gltfScene.scene.scale.set(10, 10, 10);
+      gltfScene.scene.position.y = -8;
+      gltfScene.scene.scale.set(15, 15, 15);
       test.scene.add(gltfScene.scene);
     });
 
     const animate = () => {
       if (loadedModel) {
-        loadedModel.scene.rotation.x += 0.01;
+        // loadedModel.scene.rotation.x += 0.01;
         loadedModel.scene.rotation.y += 0.01;
-        loadedModel.scene.rotation.z += 0.01;
+        // loadedModel.scene.rotation.z += 0.01;
       }
       requestAnimationFrame(animate);
     };
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <div>
+      <ProgressBar height="6" bgcolor="#000" duration="0.2"/>
       <canvas id="myThreeJsCanvas" />
     </div>
   );
